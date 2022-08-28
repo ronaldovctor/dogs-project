@@ -1,0 +1,49 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: #333;
+	--type-first: Helvetica, Arial, sans-serif;
+	--type-second: 'Spectral', Georgia;
+	font-family: var(--type-first);
+}
+
+body {
+	padding-top: 4em;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+	margin: 0;
+}
+
+ul,
+li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+button,
+input {
+	display: block;
+	font-size: 1em;
+}
+
+a {
+	text-decoration: none;
+}
+
+.container {
+	max-width: 50em;
+	padding: 0 1em;
+	margin: 0 auto;
+}
