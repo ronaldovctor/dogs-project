@@ -25,7 +25,10 @@ export const UserStorage = ({ children }) => {
 			setLoading(true)
 			const { url, options } = TOKEN_POST({ username, password })
 			const response = await fetch(url, options)
-			if (!response.ok) throw new Error(`Login Error`)
+			if (!response.ok) {
+				const status = await response.json()
+				throw new Error(`Erro: ${status.message}`)
+			}
 			const { token } = await response.json()
 			window.localStorage.setItem('token', token)
 			await getUser(token)
@@ -64,6 +67,8 @@ export const UserStorage = ({ children }) => {
 				} finally {
 					setLoading(false)
 				}
+			} else {
+				setLogin(false)
 			}
 		}
 

@@ -5,7 +5,7 @@ import Dogs from '../../assets/dogs.svg'
 import UserContext from '../../context/UserContext'
 
 function Header() {
-	const { data, userLogout } = useContext(UserContext)
+	const { data } = useContext(UserContext)
 
 	return (
 		<header className={styles.header}>
@@ -18,7 +18,6 @@ function Header() {
 						<NavLink to='/conta' className={styles.login}>
 							{data.nome}
 						</NavLink>
-						<button onClick={userLogout}>Sair</button>
 					</>
 				) : (
 					<NavLink to='/login' className={styles.login}>
