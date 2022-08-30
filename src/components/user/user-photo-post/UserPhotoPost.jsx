@@ -38,7 +38,7 @@ function UserPhotoPost() {
 	}
 
 	useEffect(() => {
-		if (data) navigate('/')
+		if (data) navigate('/conta')
 	}, [data, navigate])
 
 	return (
