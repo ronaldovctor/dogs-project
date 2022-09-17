@@ -76,9 +76,17 @@ export function PHOTOS_GET({ page, total, user }) {
 export function PHOTO_GET(id) {
 	return {
 		url: `${API_URL}/api/photo/${id}`,
+	}
+}
+
+export function PHOTO_DELETE(id, token) {
+	return {
+		url: `${API_URL}/api/photo/${id}`,
 		options: {
-			method: 'GET',
-			cache: 'no-store',
+			method: 'DELETE',
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
 		},
 	}
 }
@@ -93,6 +101,44 @@ export function COMMENT_POST(id, token, body) {
 				Authorization: `Bearer ${token}`,
 			},
 			body: JSON.stringify(body),
+		},
+	}
+}
+
+export function PASSWORD_LOST(body) {
+	return {
+		url: `${API_URL}/api/password/lost`,
+		options: {
+			method: 'POST',
+			header: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
+		},
+	}
+}
+
+export function PASSWORD_RESET(body) {
+	return {
+		url: `${API_URL}/api/password/reset`,
+		options: {
+			method: 'POST',
+			header: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
+		},
+	}
+}
+
+export function STATS_GET(token) {
+	return {
+		url: `${API_URL}/api/stats`,
+		options: {
+			method: 'GET',
+			header: {
+				Authorization: `Bearer ${token}`,
+			},
 		},
 	}
 }

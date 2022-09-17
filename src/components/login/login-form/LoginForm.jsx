@@ -7,6 +7,7 @@ import Input from '../../forms/input/Input'
 import Error from '../../helper/Error'
 import styles from './LoginForm.module.scss'
 import stylesBtn from './../../forms/button/Button.module.scss'
+import Head from '../../helper/Head'
 
 function LoginForm() {
 	const username = useForm()
@@ -22,15 +23,16 @@ function LoginForm() {
 
 	return (
 		<section className='animeLeft'>
-			LoginForm
+			<Head title='Login' />
+
 			<h1 className='title'>Login</h1>
 			<form className={styles.form} onSubmit={handleSubmit}>
 				<Input label='Usuário' type='text' name='username' {...username} />
 				<Input label='Senha' type='password' name='password' {...password} />
 				{loading ? <Button disabled>Carregando...</Button> : <Button>Entrar</Button>}
-				<Error error={error} />
+				<Error error={error && 'Dados incorretos.'} />
 			</form>
-			<Link className={styles.perdeu} to={'/login/perdeu'}>
+			<Link className={styles.perdeu} to={'/login/lost'}>
 				Perdeu a Senha?
 			</Link>
 			<div className={styles.cadastro}>

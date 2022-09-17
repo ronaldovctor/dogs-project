@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import UserContext from '../../../context/UserContext'
+import Image from '../../helper/Image'
 import PhotoComments from '../photo-comments/PhotoComments'
+import PhotoDelete from '../photo-delete/PhotoDelete'
 import styles from './PhotoContent.module.scss'
 
-function PhotoContent({ data }) {
+function PhotoContent({ data, single }) {
+	const user = useContext(UserContext)
 	const { photo, comments } = data
 
 	return (
-		<div className={styles.photo}>
+		<div className={`${styles.photo} ${single ? styles.single : ''}`}>
 			<div className={styles.img}>
-				<img src={photo.src} alt={photo.title} />
+				<Image alt={photo.title} src={photo.src} />
 			</div>
 			<div className={styles.details}>
 				<p className={styles.author}>
-					<Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>
+					{user.data && user.data.username === photo.author ? (
+						<PhotoDelete id={photo.id} />
+					) : (
+						<Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>
+					)}
 					<span className={styles.visualizacoes}>{photo.acessos}</span>
 				</p>
 				<h1 className='title'>
@@ -21,10 +29,10 @@ function PhotoContent({ data }) {
 				</h1>
 				<ul className={styles.attributes}>
 					<li>{photo.peso} kg</li>
-					<li>{photo.idade > 10 ? `${photo.idade} anos` : `${photo.idade} ano`}</li>
+					<li>{photo.idade > 1 ? `${photo.idade} anos` : `${photo.idade} ano`}</li>
 				</ul>
 			</div>
-			<PhotoComments id={photo.id} comments={comments} />
+			<PhotoComments id={photo.id} comments={comments} single={single} />
 		</div>
 	)
 }
