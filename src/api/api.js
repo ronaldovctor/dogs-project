@@ -123,7 +123,7 @@ export function PASSWORD_RESET(body) {
 		url: `${API_URL}/api/password/reset`,
 		options: {
 			method: 'POST',
-			header: {
+			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(body),
@@ -136,7 +136,7 @@ export function STATS_GET(token) {
 		url: `${API_URL}/api/stats`,
 		options: {
 			method: 'GET',
-			header: {
+			headers: {
 				Authorization: `Bearer ${token}`,
 			},
 		},

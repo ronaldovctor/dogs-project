@@ -20,7 +20,7 @@ function UserStatsGraphs({ data }) {
 	return (
 		<section className={`animeLeft ${styles.graph}`}>
 			<div className={`${styles.total} ${styles.graphItem}`}>
-				<p>Acessos: {total}</p>
+				<p>Acessos: {total && 0}</p>
 			</div>
 			<div className={`${styles.graphItem}`}>
 				<VictoryPie

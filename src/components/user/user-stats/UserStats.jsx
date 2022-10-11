@@ -13,12 +13,11 @@ function UserStats() {
 		async function getData() {
 			const token = window.localStorage.getItem('token')
 			const { url, options } = STATS_GET(token)
-			console.log(url, options)
 			const { response } = await request(url, options)
 			console.log(response)
 		}
 		getData()
-	}, [])
+	}, [request])
 
 	if (loading) return <Loading />
 	if (error) return <Error error={error} />
