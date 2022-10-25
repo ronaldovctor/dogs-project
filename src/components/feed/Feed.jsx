@@ -7,7 +7,6 @@ import FeedModal from './feed-modal/FeedModal'
 import FeedPhotos from './feed-photos/FeedPhotos'
 
 function Feed({ user }) {
-	const [modalPhoto, setModalPhoto] = useState(null)
 	const { infinite, loading, list, error } = useSelector((state) => state.feed)
 	const dispatch = useDispatch()
 
@@ -44,9 +43,9 @@ function Feed({ user }) {
 	return (
 		<>
 			{loading && <Loading />}
-			{list.length > 0 && <FeedPhotos setModalPhoto={setModalPhoto} />}
+			{list.length > 0 && <FeedPhotos />}
 			{error && <Error error={error} />}
-			{modalPhoto && <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />}
+			<FeedModal />
 		</>
 	)
 }
