@@ -1,22 +1,25 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PhotoCommentsForm from '../photo-comments-form/PhotoCommentsForm'
-import UserContext from '../../../context/UserContext'
 import styles from './PhotoComments.module.scss'
+import { useSelector } from 'react-redux'
 
 function PhotoComments(props) {
 	const [comments, setComments] = useState(() => props.comments)
-	const { login } = useContext(UserContext)
+	const { data } = useSelector((state) => state.user)
 	const commentSection = useRef(null)
 
 	useEffect(() => {
-		commentSection.current.scrollTop = commentSection.current.scrollHeight
+		if (comments.length)
+			commentSection.current.scrollTop = commentSection.current.scrollHeight
 	}, [comments])
 
 	return (
 		<>
 			<ul
 				ref={commentSection}
-				className={`${styles.comments} ${props.single ? styles.single : ''}`}
+				className={`${styles.comments} ${props.single ? styles.single : ''} ${
+					!comments.length ? styles.nocomments : ''
+				}`}
 			>
 				{comments.map((comment) => (
 					<li key={comment.comment_ID}>
@@ -25,7 +28,7 @@ function PhotoComments(props) {
 					</li>
 				))}
 			</ul>
-			{login && <PhotoCommentsForm id={props.id} setComments={setComments} />}
+			{data && <PhotoCommentsForm id={props.id} setComments={setComments} />}
 		</>
 	)
 }

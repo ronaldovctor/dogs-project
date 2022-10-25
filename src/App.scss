@@ -12,6 +12,27 @@
 
 body {
 	padding-top: 4em;
+
+	/* width */
+	&::-webkit-scrollbar {
+		width: 0.75rem;
+	}
+
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background: #eee;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		background: #838383;
+		border-radius: 1rem;
+		border: 0.15rem solid #eee;
+
+		&:hover {
+			background: #727272;
+		}
+	}
 }
 
 h1,

@@ -1,7 +1,32 @@
 .comments {
-	overflow-y: auto;
+	min-height: 5rem;
 	word-break: break-word;
 	padding: 0 1rem;
+
+	&.nocomments {
+		min-height: auto;
+	}
+
+	/* width */
+	&::-webkit-scrollbar {
+		width: 0.75rem;
+	}
+
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background: #eee;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		background: #838383;
+		border-radius: 1rem;
+		border: 0.15rem solid #eee;
+
+		&:hover {
+			background: #727272;
+		}
+	}
 
 	&.single {
 		max-height: 10rem;

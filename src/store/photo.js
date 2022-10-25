@@ -61,7 +61,6 @@ export const fetchPhoto = (id) => async (dispatch) => {
 		if (response.ok === false) throw new Error(error.message)
 
 		dispatch(fetchPhotoSuccess(data))
-		console.log(data)
 	} catch (error) {
 		dispatch(fetchPhotoError(error.message))
 	}

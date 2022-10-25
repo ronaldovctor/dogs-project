@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { USER_POST } from '../../../api/api'
-import UserContext from '../../../context/UserContext'
+import { userLogin } from '../../../store/user'
 import useFetch from '../../../hooks/useFetch'
 import useForm from '../../../hooks/useForm'
 import Button from '../../forms/button/Button'
@@ -13,7 +14,7 @@ function LoginCreate() {
 	const email = useForm('email')
 	const password = useForm()
 
-	const { userLogin } = useContext(UserContext)
+	const dispatch = useDispatch()
 	const { loading, error, request } = useFetch()
 
 	async function handleSubmit(event) {
@@ -25,17 +26,18 @@ function LoginCreate() {
 			password: password.value,
 		})
 		const { response } = await request(url, options)
-		if (response.ok) userLogin(username.value, password.value)
+		if (response.ok)
+			dispatch(userLogin({ username: username.value, password: password.value }))
 	}
 
 	return (
-		<section className='animeLeft'>
-			<Head title='Crie sua Conta' />
-			<h1 className='title'>Cadastre-se</h1>
+		<section className="animeLeft">
+			<Head title="Crie sua Conta" />
+			<h1 className="title">Cadastre-se</h1>
 			<form onSubmit={handleSubmit}>
-				<Input label='Usuário' type='text' name='username' {...username} />
-				<Input label='Email' type='email' name='email' {...email} />
-				<Input label='Senha' type='password' name='password' {...password} />
+				<Input label="Usuário" type="text" name="username" {...username} />
+				<Input label="Email" type="email" name="email" {...email} />
+				<Input label="Senha" type="password" name="password" {...password} />
 				{loading ? (
 					<Button disabled>Cadastrando...</Button>
 				) : (

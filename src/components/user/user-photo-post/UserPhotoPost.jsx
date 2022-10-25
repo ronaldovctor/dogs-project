@@ -44,15 +44,15 @@ function UserPhotoPost() {
 
 	return (
 		<section className={`${styles.photoPost} animeLeft`}>
-			<Head title='Poste sua foto' />
+			<Head title="Poste sua foto" />
 			<form onSubmit={handleSubmit}>
-				<Input label='Nome' type='text' name='nome' {...nome} />
-				<Input label='Peso' type='text' name='peso' {...peso} />
-				<Input label='Idade' type='text' name='idade' {...idade} />
+				<Input label="Nome" type="text" name="nome" {...nome} />
+				<Input label="Peso" type="text" name="peso" {...peso} />
+				<Input label="Idade" type="text" name="idade" {...idade} />
 				<input
-					type='file'
-					name='img'
-					id='img'
+					type="file"
+					name="img"
+					id="img"
 					className={styles.file}
 					onChange={handleImgChange}
 				/>
